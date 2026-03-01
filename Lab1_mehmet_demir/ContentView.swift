@@ -1,5 +1,3 @@
-
-
 import SwiftUI
 internal import Combine
 
@@ -16,7 +14,7 @@ struct ContentView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        VStack(spacing:40){
+        VStack(spacing:50){
             Spacer()
             // Number Display
             Text("\(currentNumber)")
@@ -97,6 +95,7 @@ struct ContentView: View {
     func checkAnswer(userChoiceIsPrime: Bool) {
         guard !userAnswered else { return }
         userAnswered = true
+        
         let correctAnswer = isPrime(currentNumber)
         if userChoiceIsPrime == correctAnswer {
             correctCount += 1

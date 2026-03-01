@@ -10,6 +10,7 @@ struct ContentView: View {
     @State private var correctCount: Int = 0
     @State private var wrongCount: Int = 0
     @State private var userAnswered: Bool = false
+    @State private var totalAttempts: Int = 0
     
     var body: some View {
         VStack(spacing:40){
@@ -96,6 +97,16 @@ struct ContentView: View {
             
            
     }
+    func proceedToNextRound() {
+            if totalAttempts % 10 == 0 {
+                print("After 10 attempts:\n\nCorrect: \(correctCount)\nWrong: \(wrongCount)")
+            }
+            
+            currentNumber = Int.random(in: 1...100)
+            timeRemaining = 5
+            showResultIcon = nil
+            userAnswered = false
+        }
 }
 
 #Preview {

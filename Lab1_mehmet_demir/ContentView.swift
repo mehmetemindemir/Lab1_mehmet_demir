@@ -31,6 +31,18 @@ struct ContentView: View {
                     .cornerRadius(10)
             }
             .padding(.horizontal)
+            
+            // Not Prime Button
+            Button(action: {
+            }) {
+                Text("Not Prime")
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.orange)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            .padding(.horizontal)
         }
     }
 }

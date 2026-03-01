@@ -5,6 +5,8 @@ import SwiftUI
 struct ContentView: View {
     @State private var currentNumber: Int = Int.random(in: 1...100)
     @State private var timeRemaining: Int = 5
+    @State private var showResultIcon: String? = nil
+    @State private var showResultColor: Color = .clear
     
     var body: some View {
         VStack(spacing:40){
@@ -43,6 +45,15 @@ struct ContentView: View {
                     .cornerRadius(10)
             }
             .padding(.horizontal)
+            
+            // Result Icon
+            if let icon = showResultIcon {
+                Image(systemName: icon)
+                    .resizable()
+                    .frame(width: 120, height: 120)
+                    .foregroundColor(showResultColor)
+                    .transition(.scale)
+            }
         }
     }
 }

@@ -18,6 +18,19 @@ struct ContentView: View {
             Text("Time Left: \(timeRemaining)")
             .font(.headline)
             .foregroundColor(.gray)
+            
+            // Prime Button
+            Button(action: {
+                
+            }) {
+                Text("Prime")
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            .padding(.horizontal)
         }
     }
 }

@@ -26,7 +26,7 @@ struct ContentView: View {
             
             // Prime Button
             Button(action: {
-                
+                checkAnswer(userChoiceIsPrime:true)
             }) {
                 Text("Prime")
                     .frame(maxWidth: .infinity)
@@ -39,6 +39,7 @@ struct ContentView: View {
             
             // Not Prime Button
             Button(action: {
+                checkAnswer(userChoiceIsPrime: false)
             }) {
                 Text("Not Prime")
                     .frame(maxWidth: .infinity)
@@ -82,7 +83,7 @@ struct ContentView: View {
     func checkAnswer(userChoiceIsPrime: Bool) {
             guard !userAnswered else { return }
             userAnswered = true
-            let correctAnswer = isPrime(currentNumber)            
+            let correctAnswer = isPrime(currentNumber)
             if userChoiceIsPrime == correctAnswer {
                 correctCount += 1
                 showResultIcon = "checkmark.circle.fill"

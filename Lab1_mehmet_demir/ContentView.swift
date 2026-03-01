@@ -7,6 +7,8 @@ struct ContentView: View {
     @State private var timeRemaining: Int = 5
     @State private var showResultIcon: String? = nil
     @State private var showResultColor: Color = .clear
+    @State private var correctCount: Int = 0
+    @State private var wrongCount: Int = 0
     
     var body: some View {
         VStack(spacing:40){
@@ -54,6 +56,15 @@ struct ContentView: View {
                     .foregroundColor(showResultColor)
                     .transition(.scale)
             }
+            Spacer()
+            // Score Display
+              HStack {
+                  Text("Correct: \(correctCount)")
+                      .foregroundColor(.green)
+                  Spacer()
+                  Text("Wrong: \(wrongCount)")
+                      .foregroundColor(.red)
+              }.padding()
         }
     }
 }

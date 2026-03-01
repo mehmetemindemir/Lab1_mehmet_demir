@@ -16,17 +16,15 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing:50){
             Spacer()
-            // Number Display
+            
             Text("\(currentNumber)")
             .font(.system(size: 70, weight: .bold))
             .foregroundColor(.black)
-        
-            // Timer Display
+            
             Text("Time Left: \(timeRemaining)")
             .font(.headline)
             .foregroundColor(.black)
             
-            // Prime Button
             Button(action: {
                 checkAnswer(userChoiceIsPrime:true)
             }) {
@@ -39,7 +37,6 @@ struct ContentView: View {
             }
             .padding(.horizontal)
             
-            // Not Prime Button
             Button(action: {
                 checkAnswer(userChoiceIsPrime: false)
             }) {
@@ -52,7 +49,6 @@ struct ContentView: View {
             }
             .padding(.horizontal)
             
-            // Result Icon
             if let icon = showResultIcon {
                 Image(systemName: icon)
                     .resizable()
@@ -61,7 +57,7 @@ struct ContentView: View {
                     .transition(.scale)
             }
             Spacer()
-            // Score Display
+            
               HStack {
                   Text("Correct: \(correctCount)")
                       .foregroundColor(.green)
@@ -70,11 +66,11 @@ struct ContentView: View {
                       .foregroundColor(.red)
               }.padding()
         } .onReceive(timer) { _ in
-            print("timer: ",timeRemaining)
+            //print("timer: ",timeRemaining)
             handleTimerTick()
         }.alert("Game Summary", isPresented: $showDialog) {
             Button("Continue") {
-               print("reset game")
+               //print("reset game")
                 resetGame()
             }
         } message: {

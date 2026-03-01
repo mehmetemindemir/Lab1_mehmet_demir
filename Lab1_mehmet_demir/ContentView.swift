@@ -9,6 +9,7 @@ struct ContentView: View {
     @State private var showResultColor: Color = .clear
     @State private var correctCount: Int = 0
     @State private var wrongCount: Int = 0
+    @State private var userAnswered: Bool = false
     
     var body: some View {
         VStack(spacing:40){
@@ -77,6 +78,22 @@ struct ContentView: View {
             }
         }
         return true
+    }
+    func checkAnswer(userChoiceIsPrime: Bool) {
+            guard !userAnswered else { return }
+            userAnswered = true
+            let correctAnswer = isPrime(currentNumber)            
+            if userChoiceIsPrime == correctAnswer {
+                correctCount += 1
+                showResultIcon = "checkmark.circle.fill"
+                showResultColor = .green
+            } else {
+                wrongCount += 1
+                showResultIcon = "xmark.circle.fill"
+                showResultColor = .red
+            }
+            
+           
     }
 }
 

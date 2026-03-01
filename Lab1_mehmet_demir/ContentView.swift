@@ -1,5 +1,5 @@
 import SwiftUI
-internal import Combine
+import Combine
 
 struct ContentView: View {
     @State private var currentNumber: Int = Int.random(in: 1...100)
@@ -22,32 +22,34 @@ struct ContentView: View {
             .foregroundColor(.black)
             
             Text("Time Left: \(timeRemaining)")
-            .font(.headline)
-            .foregroundColor(.black)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
             
             Button(action: {
                 checkAnswer(userChoiceIsPrime:true)
             }) {
                 Text("Prime")
+                    .font(.title2)
+                    .foregroundColor(.blue)
                     .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.green)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                    .padding(.vertical, 12)
             }
             .padding(.horizontal)
+            .disabled(userAnswered)
+            .opacity(userAnswered ? 0.6 : 1)
             
             Button(action: {
                 checkAnswer(userChoiceIsPrime: false)
             }) {
                 Text("Not Prime")
+                    .font(.title2)
+                    .foregroundColor(.blue)
                     .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.red)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                    .padding(.vertical, 12)
             }
             .padding(.horizontal)
+            .disabled(userAnswered)
+            .opacity(userAnswered ? 0.6 : 1)
             
             if let icon = showResultIcon {
                 Image(systemName: icon)
@@ -55,6 +57,7 @@ struct ContentView: View {
                     .frame(width: 120, height: 120)
                     .foregroundColor(showResultColor)
                     .transition(.scale)
+                    .animation(.spring(), value: showResultIcon)
             }
             Spacer()
             
@@ -70,8 +73,7 @@ struct ContentView: View {
             handleTimerTick()
         }.alert("Game Summary", isPresented: $showDialog) {
             Button("Continue") {
-               //print("reset game")
-                resetGame()
+              resetGame()
             }
         } message: {
             Text("After 10 attempts:\n\nCorrect: \(correctCount)\nWrong: \(wrongCount)")
@@ -119,6 +121,7 @@ struct ContentView: View {
         currentNumber = Int.random(in: 1...100)
         timeRemaining = 5
         showResultIcon = nil
+        showResultColor = .clear
         userAnswered = false
     }
     func handleTimerTick() {
@@ -143,6 +146,7 @@ struct ContentView: View {
         currentNumber = Int.random(in: 1...100)
         timeRemaining = 5
         showResultIcon = nil
+        showResultColor = .clear
         userAnswered = false
             
     }
@@ -151,3 +155,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+

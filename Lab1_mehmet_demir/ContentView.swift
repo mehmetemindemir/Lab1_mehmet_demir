@@ -82,19 +82,23 @@ struct ContentView: View {
         return true
     }
     func checkAnswer(userChoiceIsPrime: Bool) {
-            guard !userAnswered else { return }
-            userAnswered = true
-            let correctAnswer = isPrime(currentNumber)
-            if userChoiceIsPrime == correctAnswer {
-                correctCount += 1
-                showResultIcon = "checkmark.circle.fill"
-                showResultColor = .green
-            } else {
-                wrongCount += 1
-                showResultIcon = "xmark.circle.fill"
-                showResultColor = .red
-            }
-            
+        guard !userAnswered else { return }
+        userAnswered = true
+        let correctAnswer = isPrime(currentNumber)
+        if userChoiceIsPrime == correctAnswer {
+            correctCount += 1
+            showResultIcon = "checkmark.circle.fill"
+            showResultColor = .green
+        } else {
+            wrongCount += 1
+            showResultIcon = "xmark.circle.fill"
+            showResultColor = .red
+        }
+        totalAttempts += 1
+               
+       DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+           proceedToNextRound()
+       }
            
     }
     func proceedToNextRound() {

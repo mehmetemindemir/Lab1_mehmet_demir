@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var wrongCount: Int = 0
     @State private var userAnswered: Bool = false
     @State private var totalAttempts: Int = 0
+    @State private var showDialog: Bool = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -74,6 +75,12 @@ struct ContentView: View {
         } .onReceive(timer) { _ in
             print("timer: ",timeRemaining)
             handleTimerTick()
+        }.alert("Game Summary", isPresented: $showDialog) {
+            Button("Continue") {
+               print("reset game")
+            }
+        } message: {
+            Text("After 10 attempts:\n\nCorrect: \(correctCount)\nWrong: \(wrongCount)")
         }
     }
     func isPrime(_ number: Int) -> Bool {
@@ -110,6 +117,8 @@ struct ContentView: View {
     func proceedToNextRound() {
         if totalAttempts % 10 == 0 {
             print("After 10 attempts:\n\nCorrect: \(correctCount)\nWrong: \(wrongCount)")
+            
+            
         }
     
         currentNumber = Int.random(in: 1...100)

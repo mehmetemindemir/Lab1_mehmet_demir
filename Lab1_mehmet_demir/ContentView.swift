@@ -13,7 +13,6 @@ struct ContentView: View {
     @State private var userAnswered: Bool = false
     @State private var totalAttempts: Int = 0
     @State private var showDialog: Bool = false
-    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -143,10 +142,15 @@ struct ContentView: View {
         }
     }
     func resetGame() {
-           
-            currentNumber = Int.random(in: 1...100)
+        correctCount = 0
+        wrongCount = 0
+        totalAttempts = 0
+        currentNumber = Int.random(in: 1...100)
+        timeRemaining = 5
+        showResultIcon = nil
+        userAnswered = false
             
-        }
+    }
 }
 
 #Preview {

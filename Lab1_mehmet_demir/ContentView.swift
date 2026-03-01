@@ -1,21 +1,24 @@
-//
-//  ContentView.swift
-//  Lab1_mehmet_demir
-//
-//  Created by Mehmet Demır on 2026-02-28.
-//
+
 
 import SwiftUI
 
 struct ContentView: View {
+    @State private var currentNumber: Int = Int.random(in: 1...100)
+    @State private var timeRemaining: Int = 5
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(spacing:40){
+            Spacer()
+            // Number Display
+            Text("\(currentNumber)")
+            .font(.system(size: 70, weight: .bold))
+            .foregroundColor(.teal)
+        
+            // Timer Display
+            Text("Time Left: \(timeRemaining)")
+            .font(.headline)
+            .foregroundColor(.gray)
         }
-        .padding()
     }
 }
 

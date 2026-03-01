@@ -73,6 +73,7 @@ struct ContentView: View {
               }.padding()
         } .onReceive(timer) { _ in
             print("timer: ",timeRemaining)
+            handleTimerTick()
         }
     }
     func isPrime(_ number: Int) -> Bool {
@@ -115,6 +116,21 @@ struct ContentView: View {
         timeRemaining = 5
         showResultIcon = nil
         userAnswered = false
+    }
+    func handleTimerTick() {
+        if timeRemaining > 0 {
+            timeRemaining -= 1
+        } else {
+            if !userAnswered {
+                wrongCount += 1
+                totalAttempts += 1
+                showResultIcon = "xmark.circle.fill"
+                showResultColor = .red
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                proceedToNextRound()
+            }
+        }
     }
 }
 

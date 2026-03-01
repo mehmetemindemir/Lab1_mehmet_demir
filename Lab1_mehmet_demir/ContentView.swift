@@ -78,6 +78,7 @@ struct ContentView: View {
         }.alert("Game Summary", isPresented: $showDialog) {
             Button("Continue") {
                print("reset game")
+                resetGame()
             }
         } message: {
             Text("After 10 attempts:\n\nCorrect: \(correctCount)\nWrong: \(wrongCount)")
@@ -141,6 +142,11 @@ struct ContentView: View {
             }
         }
     }
+    func resetGame() {
+           
+            currentNumber = Int.random(in: 1...100)
+            
+        }
 }
 
 #Preview {

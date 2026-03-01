@@ -118,7 +118,7 @@ struct ContentView: View {
         if totalAttempts % 10 == 0 {
             print("After 10 attempts:\n\nCorrect: \(correctCount)\nWrong: \(wrongCount)")
             
-            
+            showDialog = true
         }
     
         currentNumber = Int.random(in: 1...100)

@@ -1,6 +1,7 @@
 
 
 import SwiftUI
+internal import Combine
 
 struct ContentView: View {
     @State private var currentNumber: Int = Int.random(in: 1...100)
@@ -12,18 +13,20 @@ struct ContentView: View {
     @State private var userAnswered: Bool = false
     @State private var totalAttempts: Int = 0
     
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     var body: some View {
         VStack(spacing:40){
             Spacer()
             // Number Display
             Text("\(currentNumber)")
             .font(.system(size: 70, weight: .bold))
-            .foregroundColor(.teal)
+            .foregroundColor(.black)
         
             // Timer Display
             Text("Time Left: \(timeRemaining)")
             .font(.headline)
-            .foregroundColor(.gray)
+            .foregroundColor(.black)
             
             // Prime Button
             Button(action: {
@@ -32,7 +35,7 @@ struct ContentView: View {
                 Text("Prime")
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.blue)
+                    .background(Color.green)
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
@@ -45,7 +48,7 @@ struct ContentView: View {
                 Text("Not Prime")
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.orange)
+                    .background(Color.red)
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
@@ -68,6 +71,8 @@ struct ContentView: View {
                   Text("Wrong: \(wrongCount)")
                       .foregroundColor(.red)
               }.padding()
+        } .onReceive(timer) { _ in
+            print("timer: ",timeRemaining)
         }
     }
     func isPrime(_ number: Int) -> Bool {

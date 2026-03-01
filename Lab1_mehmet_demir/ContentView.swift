@@ -102,15 +102,15 @@ struct ContentView: View {
            
     }
     func proceedToNextRound() {
-            if totalAttempts % 10 == 0 {
-                print("After 10 attempts:\n\nCorrect: \(correctCount)\nWrong: \(wrongCount)")
-            }
-            
-            currentNumber = Int.random(in: 1...100)
-            timeRemaining = 5
-            showResultIcon = nil
-            userAnswered = false
+        if totalAttempts % 10 == 0 {
+            print("After 10 attempts:\n\nCorrect: \(correctCount)\nWrong: \(wrongCount)")
         }
+    
+        currentNumber = Int.random(in: 1...100)
+        timeRemaining = 5
+        showResultIcon = nil
+        userAnswered = false
+    }
 }
 
 #Preview {
